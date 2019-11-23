@@ -71,6 +71,10 @@ p {
   &--isActive {
     visibility: visible;
   }
+
+  &--contacts {
+    width: 100%;
+  }
 }
 
 .hdr {
@@ -82,7 +86,7 @@ p {
 
   &--bigger {
     font-size: 72px;
-    line-height: 0.88em;
+    line-height: 0.95em;
     font-weight: 800;
   }
 
@@ -126,7 +130,6 @@ p {
   }
 
 }
-
 
 .button {
   outline: none;
@@ -173,7 +176,7 @@ p {
 
   &--about {
     padding: 0;
-    margin-top: 0px;
+    margin-top: 15px;
     
     .button__arrow-right {
       font-size: 18px;
@@ -221,12 +224,22 @@ p {
   }
 
   &--about {
-    padding-top: 45px;
+    padding-top: 65px;
     background-image: url(../img/about-visual.png);
   }
+  
+  &--contacts {
+    background-image: url(../img/contact-visual.png);
+    height: auto;
+    background-size: cover;
+    background-position: right -140px bottom 40px;
+    position: relative;
+
+  }
+
+
+
 }
-
-
 
 .c-links-wrapper {
   // border: 1px dotted blue;
@@ -247,7 +260,21 @@ p {
   &--about {
     justify-content: flex-start;
     height: calc(100vh - 535px);
+  }
 
+  &--contacts {
+    background-color: #000;
+    position: absolute;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    right: 0;
+    top: 100px;
+    width: 300px;
+    height: 400px;
+    box-shadow: -10px 10px 15px 15px rgba(0, 0, 0, 0.8);
+    padding-top: 80px;
+    text-align: center;
   }
 }
 
@@ -431,5 +458,36 @@ p {
 
 }
 
+.figure-drawer-wrapper {
+  position: relative;
+}
 
+.figure {
+  background-color: $main-color;
+
+  &__1 {
+    &::before {
+      background-color: $main-color;
+      content: '';
+      width: 21px;
+      height: 21px;
+      position: absolute;
+      top: 6px;
+      border-radius: 50%;
+    }
+  }
+
+  &__2 {
+    &::before {
+      background-color: $main-color;
+      content: '';
+      width: 10px;
+      height: 10px;
+      position: absolute;
+      bottom: 16px;
+      right: -20px;
+    }
+  }
+
+}
 
