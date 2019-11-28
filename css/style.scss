@@ -29,6 +29,10 @@ p {
   font-weight: 400;
 }
 
+a {
+  text-decoration: none;
+}
+
 .l-container {
   width: 100%;
   min-height: 100vh;
@@ -60,7 +64,6 @@ p {
   display: flex;
   flex-wrap: wrap;
   overflow: hidden;
-  // padding: 0px 32px 32px 32px;
   margin: 0 auto;
   position: absolute;
   left: 0;
@@ -68,12 +71,17 @@ p {
   top: 70px;  
   visibility: hidden;
 
-  &--isActive {
+  &--is-active {
     visibility: visible;
   }
 
   &--contacts {
     width: 100%;
+  }
+
+  &--hire {
+    width: 700px;
+
   }
 }
 
@@ -192,6 +200,15 @@ p {
     }
   }
 
+  &--contacts {
+    justify-content: center;
+    width: 160px;
+    height: 40px;
+    background-color: $main-color;
+    margin: 32px 0 0 0;
+    padding: 0;
+  }
+
   &__label {
     color: white;
     text-transform: uppercase;
@@ -263,7 +280,7 @@ p {
   }
 
   &--contacts {
-    background-color: #000;
+    background-color: #0c0c0c;
     position: absolute;
     color: #fff;
     font-size: 14px;
@@ -273,8 +290,12 @@ p {
     width: 300px;
     height: 400px;
     box-shadow: -10px 10px 15px 15px rgba(0, 0, 0, 0.8);
-    padding-top: 80px;
+    padding-top: 10px;
     text-align: center;
+    display: flex; 
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
   }
 }
 
@@ -339,6 +360,17 @@ p {
       }
     }
   }
+
+  &--contacts {
+    width: 100%;
+    margin: 10px 0 0 0;
+    color: #858585;
+    transition: 0.3s ease-in;
+
+    &:hover {
+      color: white;
+    }
+  }
 }
 
 
@@ -351,7 +383,7 @@ p {
 }
 
 .works-header {
-  top: 60px;
+  top: 50px;
   position: absolute;
   left: 0;
   right: 0;
@@ -491,3 +523,59 @@ p {
 
 }
 
+.c-form-hire {
+  // border: 1px solid $main-color;
+  width: 100%;
+  height: auto;
+  margin-top: 120px;
+
+  & input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .cb-container {
+        border: 2px solid $main-color;
+        background-color: $main-color;
+    }  
+  }
+
+  & .group-1 {
+    display: flex;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+  }
+
+  & .group-2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% - 200px);
+    height: auto;
+    justify-content: space-around;
+    margin: 0 auto;
+  }
+}
+
+.cb-container {
+  width: 200px;
+  height: 50px;
+  border: 2px solid white;
+  color:white;
+  position: relative;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font: 500 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: 0.3s ease-in;
+  margin-bottom: 40px;
+
+}

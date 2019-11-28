@@ -203,6 +203,10 @@ p {
   font-weight: 400;
 }
 
+a {
+  text-decoration: none;
+}
+
 .l-container {
   width: 100%;
   min-height: 100vh;
@@ -249,12 +253,16 @@ p {
   visibility: hidden;
 }
 
-.l-section--isActive {
+.l-section--is-active {
   visibility: visible;
 }
 
 .l-section--contacts {
   width: 100%;
+}
+
+.l-section--hire {
+  width: 700px;
 }
 
 .hdr {
@@ -378,6 +386,17 @@ p {
   margin-left: 1.25em;
 }
 
+.button--contacts {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 160px;
+  height: 40px;
+  background-color: #0f33fe;
+  margin: 32px 0 0 0;
+  padding: 0;
+}
+
 .button__label {
   color: white;
   text-transform: uppercase;
@@ -451,7 +470,7 @@ p {
 }
 
 .c-links-wrapper--contacts {
-  background-color: #000;
+  background-color: #0c0c0c;
   position: absolute;
   color: #fff;
   font-size: 14px;
@@ -462,8 +481,21 @@ p {
   height: 400px;
   -webkit-box-shadow: -10px 10px 15px 15px rgba(0, 0, 0, 0.8);
           box-shadow: -10px 10px 15px 15px rgba(0, 0, 0, 0.8);
-  padding-top: 80px;
+  padding-top: 10px;
   text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .c-link {
@@ -530,6 +562,18 @@ p {
   bottom: -25px;
 }
 
+.c-link--contacts {
+  width: 100%;
+  margin: 10px 0 0 0;
+  color: #858585;
+  -webkit-transition: 0.3s ease-in;
+  transition: 0.3s ease-in;
+}
+
+.c-link--contacts:hover {
+  color: white;
+}
+
 .works {
   width: 100%;
   height: 90%;
@@ -544,7 +588,7 @@ p {
 }
 
 .works-header {
-  top: 60px;
+  top: 50px;
   position: absolute;
   left: 0;
   right: 0;
@@ -678,5 +722,75 @@ p {
   position: absolute;
   bottom: 16px;
   right: -20px;
+}
+
+.c-form-hire {
+  width: 100%;
+  height: auto;
+  margin-top: 120px;
+}
+
+.c-form-hire input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.c-form-hire input[type="checkbox"]:checked ~ .cb-container {
+  border: 2px solid #0f33fe;
+  background-color: #0f33fe;
+}
+
+.c-form-hire .group-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  height: auto;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.c-form-hire .group-2 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: calc(100% - 200px);
+  height: auto;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  margin: 0 auto;
+}
+
+.cb-container {
+  width: 200px;
+  height: 50px;
+  border: 2px solid white;
+  color: white;
+  position: relative;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  font: 500 18px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: 0.3s ease-in;
+  transition: 0.3s ease-in;
+  margin-bottom: 40px;
 }
 /*# sourceMappingURL=style.css.map */
