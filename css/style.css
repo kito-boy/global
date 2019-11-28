@@ -1,5 +1,6 @@
 @charset "UTF-8";
 @import url("https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap");
+@use 'assets/layout';
 @font-face {
   font-family: 'global-template-icons';
   src: url("./font/global-template-icons.eot?21803141");
@@ -201,60 +202,6 @@ p {
   font-size: 14px;
   line-height: 1.6;
   font-weight: 400;
-}
-
-.l-container {
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  background-color: #0c0c0c;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-}
-
-.l-wrapper {
-  margin: 0 2vw;
-  max-width: 1180px;
-  width: 90%;
-  height: auto;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.l-section {
-  max-width: 900px;
-  width: 90%;
-  height: calc(100% - 70px);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-  overflow: hidden;
-  margin: 0 auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 70px;
-  visibility: hidden;
-}
-
-.l-section--isActive {
-  visibility: visible;
-}
-
-.l-section--contacts {
-  width: 100%;
 }
 
 .hdr {
@@ -552,7 +499,7 @@ p {
   text-align: center;
 }
 
-.works-slider {
+.works-slider-wrapper {
   width: 90%;
   height: 300px;
   padding: 0;

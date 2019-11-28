@@ -1,5 +1,7 @@
+@use 'assets/layout';
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap');
-@import "./global-template-icons";
+@import "./icons-font/global-template-icons";
+
 
 $main-color: rgb(15,51,254);
 
@@ -29,53 +31,54 @@ p {
   font-weight: 400;
 }
 
-.l-container {
-  width: 100%;
-  min-height: 100vh;
-  overflow: hidden;
-  background-color: #0c0c0c;
-  display: flex;
-  justify-content: center;
-}
+// .l-container {
+//   width: 100%;
+//   min-height: 100vh;
+//   overflow: hidden;
+//   background-color: #0c0c0c;
+//   display: flex;
+//   justify-content: center;
+// }
 
-.l-wrapper {
-  // background-color: #000;
-  margin: 0 2vw;
-  max-width: 1180px;
-  width: 90%;
-  height: auto;
-  // margin: 0 auto;
-  // border: 1px dashed whitesmoke;
-  display: flex;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
-}
+// .l-wrapper {
+//   // background-color: #000;
+//   margin: 0 2vw;
+//   max-width: 1180px;
+//   width: 90%;
+//   height: auto;
+//   // margin: 0 auto;
+//   // border: 1px dashed whitesmoke;
+//   display: flex;
+//   justify-content: center;
+//   overflow: hidden;
+//   position: relative;
+// }
 
-.l-section {
-  // border: 2px solid purple;
-  max-width: 900px;
-  width: 90%;
-  height: calc(100% - 70px);
-  display: flex;
-  flex-wrap: wrap;
-  overflow: hidden;
-  // padding: 0px 32px 32px 32px;
-  margin: 0 auto;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 70px;  
-  visibility: hidden;
+// .l-section {
+//   // border: 2px solid purple;
+  
+//   max-width: 900px;
+//   width: 90%;
+//   height: calc(100% - 70px);
+//   display: flex;
+//   flex-wrap: wrap;
+//   overflow: hidden;
+//   // padding: 0px 32px 32px 32px;
+//   margin: 0 auto;
+//   position: absolute;
+//   left: 0;
+//   right: 0;
+//   top: 70px;  
+//   visibility: hidden;
 
-  &--isActive {
-    visibility: visible;
-  }
+//   &--isActive {
+//     visibility: visible;
+//   }
 
-  &--contacts {
-    width: 100%;
-  }
-}
+//   &--contacts {
+//     width: 100%;
+//   }
+// }
 
 .hdr {
   margin-bottom: 32px;
@@ -359,7 +362,7 @@ p {
   text-align: center;
 }
 
-.works-slider {
+.works-slider-wrapper {
   width: 90%;
   height: 300px;
   padding: 0;

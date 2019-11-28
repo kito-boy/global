@@ -1,0 +1,42 @@
+.l-container {
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  background-color: #0c0c0c;
+  display: flex;
+  justify-content: center;
+}
+
+.l-wrapper {
+  margin: 0 2vw;
+  max-width: 1180px;
+  width: 90%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.l-section {
+  max-width: 900px;
+  width: 90%;
+  height: calc(100% - 70px);
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 70px;  
+  visibility: hidden;
+
+  &--isActive {s
+    visibility: visible;
+  }
+
+  &--contacts {
+    width: 100%;
+  }
+}

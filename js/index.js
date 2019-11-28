@@ -1,19 +1,18 @@
+
+
 class Slider {
   index;
-  itemsArray;
+  rootNode;
+  controlTypes;
+  renderer;
+  prevItem;
+  nextItem;
 
-  constructor(rootNode, prevButton, nextButton) {
+  constructor(rootNode, renderer,...controlTypes) {
     this.index = 1;
-    this.itemsArray = rootNode.children;
-    prevButton.onclick = () => {
-      this.index = this.prev();
-      this.render();
-      console.log('back');
-    }
-    nextButton.onclick = () => {
-      this.index = this.next();
-      this.render();
-    }
+    this.renderer = renderer;
+    this.controlTypes = controlTypes;
+    this.rootNode = rootNode;  
   }
 
   next() {
@@ -31,8 +30,6 @@ class Slider {
   render() {
     for (let el of this.itemsArray) {
       el.classList.remove('works-slider-item--left', 'works-slider-item--right','works-slider-item--center');
-      // el.classList.toggle('.works-slider-item--right', false);
-      // el.classList.toggle('.works-slider-item--center', false);
     };
     console.log(this.index)
     console.log(this.prev());
@@ -40,9 +37,40 @@ class Slider {
     this.itemsArray.item(this.prev()).classList.add('works-slider-item--left');
     this.itemsArray.item(this.next()).classList.add('works-slider-item--right');
   }
+
+  setControls() {
+    this.controlTypes.forEach(type => {
+      switch (type) {
+        case 'buttons':
+          this.buttonsInit();
+          break;
+        case 'keyboard':
+          this.keyboardInit();
+          break;
+      }
+    })
+  }
+
+  buttonsInit() {
+    this.rootNode.querySelector('.slider__prev').addEventListener('click', this.moveBack);
+    this.rootNode.querySelector('.slider__next').addEventListener('click', this.moveForward);
+  }
+};
+
+class Render {
+
+  constructor(active, sliderObject) {
+    this.classActive = active;
+    
+  }
+
+  render() {
+
+  }
 }
 
-const worksSlider = new Slider(document.querySelector('.works-slider'),
-                         document.querySelector('.works-slider__prev'), 
-                         document.querySelector('.works-slider__next'));
+
+const worksSlider = new Slider ( document.querySelector('.works-slider'), 'buttons' )
+
+
 
