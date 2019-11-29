@@ -1,10 +1,11 @@
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,800,900&display=swap');
 @import "./global-template-icons";
 
 $main-color: rgb(15,51,254);
 
 html {
   box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
 }
 
 html > * {
@@ -81,7 +82,6 @@ a {
 
   &--hire {
     width: 700px;
-
   }
 }
 
@@ -207,6 +207,27 @@ a {
     background-color: $main-color;
     margin: 32px 0 0 0;
     padding: 0;
+  }
+
+  &--submit {
+    justify-content: center;
+    background-color: $main-color;
+    padding: 0;
+    color: white;
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    border: none;
+    height: 50px;
+    width: 300px;
+    position: absolute;
+    margin: 0 auto;
+    transition: 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95); 
+
+    &:hover {
+      width: 400px;
+    }
   }
 
   &__label {
@@ -372,7 +393,6 @@ a {
     }
   }
 }
-
 
 .works {
   width: 100%;
@@ -557,6 +577,21 @@ a {
     justify-content: space-around;
     margin: 0 auto;
   }
+
+  & .text-input-wrapper {
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+  & .submit-wrapper {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 75px;
+  }
 }
 
 .cb-container {
@@ -570,12 +605,57 @@ a {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font: 500 18px;
+  font-weight: 500;
+  font-size: 18px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
   transition: 0.3s ease-in;
   margin-bottom: 40px;
+
+}
+
+.input-name {
+  position: relative;
+  border-bottom: 1px solid #fff;
+  width: 325px;
+  height: 50px;
+
+  &__field {
+    width: 100%;
+    background-color: #0c0c0c;
+    border: none;
+    color: white;
+    outline: none;
+    font-family: "Montserrat", sans-serif;
+    font-weight: 300; 
+    font-size: 24px;
+    position: absolute;
+    bottom: 5px;
+
+    &:focus ~ .input-name__label {
+      font-size: 14px;
+      bottom: 44px;
+      color: rgba($color: #fff, $alpha: 0.6)
+    }
+
+    &:not(:placeholder-shown) ~ .input-name__label {
+      font-size: 14px;
+      bottom: 44px;
+      color: rgba($color: #fff, $alpha: 0.6)
+    }
+
+  }
+
+  &__label {
+    color: #fff;
+    position: absolute;
+    bottom: 3px;
+    left: -1px;
+    font-weight: 300; 
+    font-size: 24px;
+    transition: all 0.2s ease-in;
+  }
 
 }
