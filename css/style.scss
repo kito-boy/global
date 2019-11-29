@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,800,900&display=swap');
-@import "./global-template-icons";
+@import "./global-icons";
 
 $main-color: rgb(15,51,254);
 
@@ -216,7 +216,7 @@ a {
     color: white;
     text-transform: uppercase;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.05em;
     border: none;
     height: 50px;
@@ -557,8 +557,13 @@ a {
     width: 0;
 
     &:checked ~ .cb-container {
-        border: 2px solid $main-color;
-        background-color: $main-color;
+      border: 2px solid $main-color;
+      background-color: $main-color;
+
+      & .icon-ok {
+        visibility: visible;
+        font-size: 16px;
+      }
     }  
   }
 
@@ -581,7 +586,6 @@ a {
   & .text-input-wrapper {
     display: flex;
     justify-content: space-between;
-
   }
 
   & .submit-wrapper {
@@ -605,8 +609,8 @@ a {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-weight: 500;
-  font-size: 18px;
+  font-weight: 600;
+  font-size: 16px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -614,6 +618,11 @@ a {
   transition: 0.3s ease-in;
   margin-bottom: 40px;
 
+  & .icon-ok {
+    font-size: 0;
+    visibility: hidden;
+    transition: 0.2s ease-in;
+  }
 }
 
 .input-name {
@@ -645,7 +654,6 @@ a {
       bottom: 44px;
       color: rgba($color: #fff, $alpha: 0.6)
     }
-
   }
 
   &__label {
