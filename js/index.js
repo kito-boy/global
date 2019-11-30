@@ -1,48 +1,83 @@
-class Slider {
-  index;
-  itemsArray;
-
-  constructor(rootNode, prevButton, nextButton) {
-    this.index = 1;
-    this.itemsArray = rootNode.children;
-    prevButton.onclick = () => {
-      this.index = this.prev();
-      this.render();
-      console.log('back');
-    }
-    nextButton.onclick = () => {
-      this.index = this.next();
-      this.render();
-    }
+class Control { 
+  types;
+  constructor(...types) {
+    this.types = types;
   }
 
-  next() {
-    let k = this.index;
-    k = this.index === this.itemsArray.length - 1 ? 0 : this.index + 1;
-    return k;
-  }
-
-  prev() {
-    let k = this.index;
-    k = this.index === 0 ? this.itemsArray.length - 1 : this.index - 1;
-    return k;
-  }
-
-  render() {
-    for (let el of this.itemsArray) {
-      el.classList.remove('works-slider-item--left', 'works-slider-item--right','works-slider-item--center');
-      // el.classList.toggle('.works-slider-item--right', false);
-      // el.classList.toggle('.works-slider-item--center', false);
-    };
-    console.log(this.index)
-    console.log(this.prev());
-    this.itemsArray.item(this.index).classList.add('works-slider-item--center');
-    this.itemsArray.item(this.prev()).classList.add('works-slider-item--left');
-    this.itemsArray.item(this.next()).classList.add('works-slider-item--right');
+  setControlsButtons(slider) {
+    document.querySelector('.' + slider.rootNodeClass + '__prevButton').addEventListener('click', () => slider.showPrev());
+    document.querySelector('.' + slider.rootNodeClass + '__nextButton').addEventListener('click', () => slider.showNext());
   }
 }
 
-const worksSlider = new Slider(document.querySelector('.works-slider'),
-                         document.querySelector('.works-slider__prev'), 
-                         document.querySelector('.works-slider__next'));
+class Render {
+  constructor() {}
+
+  renderCarousel(slider) {
+    for (let el of slider.itemsArray) {
+      el.classList.remove(slider.rootNodeClass + '-item--center',
+                          slider.rootNodeClass + '-item--left',
+                          slider.rootNodeClass + '-item--right');
+    };
+    slider.itemsArray.item(slider.currentIndex).classList.add(slider.rootNodeClass + '-item--center');
+    slider.itemsArray.item(slider.prev()).classList.add(slider.rootNodeClass + '-item--left');
+    slider.itemsArray.item(slider.next()).classList.add(slider.rootNodeClass + '-item--right');
+  }
+}
+
+class Slider {
+  currentIndex;
+  itemsArray;
+  rootNodeClass;
+  controller;
+  renderer;
+
+  constructor(rootNodeClass, controller, renderer) {
+    this.controller = controller;
+    this.renderer = renderer;
+    this.currentIndex = 0;
+    this.rootNodeClass = rootNodeClass;
+    this.itemsArray = document.querySelector('.' + rootNodeClass).children;
+  }
+
+  next() {
+    if (this.currentIndex === this.itemsArray.length - 1) {
+      return 0;
+    } else {
+      return this.currentIndex + 1;
+    }
+  }
+
+  prev() {
+    if (this.currentIndex === 0) {
+      return this.itemsArray.length - 1;
+    } else {
+      return this.currentIndex - 1;
+    }
+  }
+
+  setControls() {
+    this.controller.setControlsButtons(this);
+  } 
+
+  showPrev() {
+    this.currentIndex = this.prev();
+    this.render();
+  }
+
+  showNext() {
+    this.currentIndex = this.next();
+    this.render();
+  }
+
+  render() {
+    this.renderer.renderCarousel(this);
+  }
+}
+
+const worksSliderController = new Control();
+const worksSliderRenderer = new Render();
+const worksSlider = new Slider('works-slider', worksSliderController, worksSliderRenderer);
+worksSlider.render();
+worksSlider.setControls();
 

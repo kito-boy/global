@@ -44,13 +44,10 @@ a {
 }
 
 .l-wrapper {
-  // background-color: #000;
   margin: 0 2vw;
   max-width: 1180px;
   width: 90%;
   height: auto;
-  // margin: 0 auto;
-  // border: 1px dashed whitesmoke;
   display: flex;
   justify-content: center;
   overflow: hidden;
@@ -275,8 +272,6 @@ a {
 
   }
 
-
-
 }
 
 .c-links-wrapper {
@@ -426,13 +421,15 @@ a {
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
-  
+
   &__image {
     display: block;
     border-radius: 50%;
     width: 150px;
     height: 150px;
     object-fit: cover;
+    transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
+
   }  
 
   &__title {
@@ -451,13 +448,13 @@ a {
     position: absolute;
     left: 0;
     right: 0;
-    top: 404px;
+    top: calc(100% + 64px);
     color: white;
-    font-size: 4px;
+    font-size: 14px;
     font-weight: 500;
     line-height: 1.6em;
     opacity: 0;
-
+    text-align: center;
   }
 
   &--center{
@@ -472,39 +469,26 @@ a {
       &__image {
         width: 300px;
         height: 300px;
-        transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
       }
       &__title {
         color: white;
         font-size: 16px;
         top: 325px;
-        transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
-
       }
       &__description {
-        font-size: 14px;
         opacity: 1;
-        top: 364px;
-        text-align: center;
-        transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
-
       }
     }
   }
 
   &--left {
     opacity: 1;
-    transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
     left: 5%;
-    z-index: 667;
   }
 
   &--right {
     opacity: 1;
-    transition: all 600ms cubic-bezier(0.47, 0, 0.745, 0.715);
     right: 5%;
-    z-index: 667;
-
   }
 
 
@@ -544,7 +528,6 @@ a {
 }
 
 .c-form-hire {
-  // border: 1px solid $main-color;
   width: 100%;
   height: auto;
   margin-top: 120px;
@@ -625,6 +608,8 @@ a {
   }
 }
 
+
+
 .input-name {
   position: relative;
   border-bottom: 1px solid #fff;
@@ -665,5 +650,4 @@ a {
     font-size: 24px;
     transition: all 0.2s ease-in;
   }
-
 }
