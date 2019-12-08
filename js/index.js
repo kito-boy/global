@@ -1,83 +1,110 @@
-class Control { 
-  types;
-  constructor(...types) {
-    this.types = types;
+function nextItem(item) {
+  if (item.nextElementSibling == null) {
+    return item.parentNode.firstElementChild;
   }
+  return item.nextElementSibling;
+}
 
-  setControlsButtons(slider) {
-    document.querySelector('.' + slider.rootNodeClass + '__prevButton').addEventListener('click', () => slider.showPrev());
-    document.querySelector('.' + slider.rootNodeClass + '__nextButton').addEventListener('click', () => slider.showNext());
+function previousItem(item) {
+  if (item.previousElementSibling == null) {
+    return item.parentNode.lastElementChild;
   }
+  return item.previousElementSibling;
 }
 
 class Render {
-  constructor() {}
+  rootNodeClass;
+  currentItem;
+  type;
 
-  renderCarousel(slider) {
-    for (let el of slider.itemsArray) {
-      el.classList.remove(slider.rootNodeClass + '-item--center',
-                          slider.rootNodeClass + '-item--left',
-                          slider.rootNodeClass + '-item--right');
+  constructor(rootNodeClass, type) {
+    this.rootNodeClass = rootNodeClass;
+    this.type = type;
+    this.currentItem = document.querySelector('.' + this.rootNodeClass).firstElementChild;
+  }
+
+  render() {
+    switch(this.type) {
+      case 'carousel':
+        this.renderCarousel();
+        break;
+      case 'fullscreen-vertical':
+        this.renderFsVertical();
+        break;
+    }
+  }
+
+  renderCarousel() {
+    for (let el of document.querySelector('.' + this.rootNodeClass).children) {
+      el.classList.remove(this.rootNodeClass + '-item--center',
+                          this.rootNodeClass + '-item--left',
+                          this.rootNodeClass + '-item--right')
     };
-    slider.itemsArray.item(slider.currentIndex).classList.add(slider.rootNodeClass + '-item--center');
-    slider.itemsArray.item(slider.prev()).classList.add(slider.rootNodeClass + '-item--left');
-    slider.itemsArray.item(slider.next()).classList.add(slider.rootNodeClass + '-item--right');
+
+    this.currentItem.classList.add(this.rootNodeClass + '-item--center');
+    previousItem(this.currentItem).classList.add(this.rootNodeClass + '-item--left');
+    nextItem(this.currentItem).classList.add(this.rootNodeClass + '-item--right');
+  }
+
+  renderFsVertical() {
+    previousItem(this.currentItem).classList.remove(this.rootNodeClass + '-item--is-active');
+    nextItem(this.currentItem).classList.remove(this.rootNodeClass + '-item--is-active');
+    this.currentItem.classList.add(this.rootNodeClass + '-item--is-active');
+  }
+
+  showNext() {
+    this.currentItem = nextItem(this.currentItem)
+    this.render();
+  }
+
+  showPrevious() {
+    this.currentItem = previousItem(this.currentItem)
+    this.render();
   }
 }
 
 class Slider {
-  currentIndex;
-  itemsArray;
-  rootNodeClass;
-  controller;
   renderer;
 
-  constructor(rootNodeClass, controller, renderer) {
-    this.controller = controller;
+  constructor(renderer) {
     this.renderer = renderer;
-    this.currentIndex = 0;
-    this.rootNodeClass = rootNodeClass;
-    this.itemsArray = document.querySelector('.' + rootNodeClass).children;
   }
 
-  next() {
-    if (this.currentIndex === this.itemsArray.length - 1) {
-      return 0;
-    } else {
-      return this.currentIndex + 1;
-    }
-  }
-
-  prev() {
-    if (this.currentIndex === 0) {
-      return this.itemsArray.length - 1;
-    } else {
-      return this.currentIndex - 1;
-    }
-  }
-
-  setControls() {
-    this.controller.setControlsButtons(this);
-  } 
-
-  showPrev() {
-    this.currentIndex = this.prev();
-    this.render();
-  }
-
-  showNext() {
-    this.currentIndex = this.next();
-    this.render();
+  setControls(controlTypes) {
+    controlTypes.forEach(type => {
+      console.log(type);
+      switch (type) {
+        case 'buttons':
+          document.querySelector('.' + this.renderer.rootNodeClass + '__prevButton').addEventListener('click', () => this.renderer.showPrevious(), false);
+          document.querySelector('.' + this.renderer.rootNodeClass + '__nextButton').addEventListener('click', () => this.renderer.showNext(), false);
+          break;
+        case 'arrowkeys-vertical':
+          document.addEventListener('keyup', (e) => {
+            if (e.code === "ArrowUp") {
+               this.renderer.showPrevious();
+            } else if (e.code === "ArrowDown") {
+              this.renderer.showNext();
+            }
+          })
+      }
+    })
   }
 
   render() {
-    this.renderer.renderCarousel(this);
+    this.renderer.render();
   }
 }
 
-const worksSliderController = new Control();
-const worksSliderRenderer = new Render();
-const worksSlider = new Slider('works-slider', worksSliderController, worksSliderRenderer);
-worksSlider.render();
-worksSlider.setControls();
+function makeSlider(rootNodeClass, renderType, ...controlTypes) {
+  let types = controlTypes;
+  const newSliderRenderer = new Render(rootNodeClass, renderType);
+  const newSlider = new Slider(newSliderRenderer);
+  newSlider.render();
+  newSlider.setControls(types);
+}
+
+makeSlider('works-slider', 'carousel', 'buttons');
+makeSlider('section-slider', 'fullscreen-vertical', 'arrowkeys-vertical');
+
+
 
