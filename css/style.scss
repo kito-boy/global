@@ -43,14 +43,13 @@ span {
   width: 100%;
   min-height: 100vh;
   overflow: hidden;
-  // background-color: #0c0c0c;
   display: flex;
   justify-content: center;
 }
 
 .l-wrapper {
   margin: 0 2vw;
-  max-width: 1180px;
+  max-width: 1440px;
   width: 90%;
   height: auto;
   display: flex;
@@ -60,7 +59,7 @@ span {
 
 .section-slider-item {
   // border: 2px solid purple;
-  max-width: 900px;
+  max-width: 1180px;
   width: 90%;
   height: calc(100% - 70px);
   display: flex;
@@ -110,7 +109,7 @@ span {
 
 .header {
   display: flex;
-  max-width: 1180px;
+  max-width: 1440px;
   width: 100%;
   height: 70px;
   // border: 1px solid green;
@@ -257,11 +256,12 @@ span {
   background-position: right 0 bottom -2px;
   background-size: contain;
   width: 100%;
-  height: 440px;
+  min-height: 440px;
+  height: 70%;
   display: block;
 
   &--intro {
-    padding-top: 45px; 
+    padding-top: 7vh; 
     background-image: url(../img/introduction-visual.png);
     border-bottom: 1px solid #666666;
   }
@@ -325,7 +325,7 @@ span {
 
 .c-link {
   width: 30%;
-  min-height: 70%;
+  max-height: 70%;
   transition: 0.3s ease-in;
   position: relative;
   cursor: pointer;
