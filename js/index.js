@@ -104,7 +104,7 @@ function makeSlider(rootNodeClass, renderType, ...controlTypes) {
 }
 
 makeSlider('works-slider', 'carousel', 'buttons');
-makeSlider('section-slider', 'fullscreen-vertical', 'arrowkeys-vertical');
+makeSlider('l-section', 'fullscreen-vertical', 'arrowkeys-vertical');
 
 
 
