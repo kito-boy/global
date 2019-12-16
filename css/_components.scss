@@ -1,4 +1,4 @@
-@import "./c-button" ,"./c-link";
+@import "./c-button", "./c-link", "./mq";
 
 .c-header {
   display: flex;
@@ -7,32 +7,36 @@
   height: 70px;
   // border: 1px solid green;
 
-  &__logo {
-    display: flex;
-    padding-left: 0px;
-    justify-content: space-around;
-    align-items: center;
-    height: auto;
-    width: 120px;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 700;
-    margin: 0px;
-    text-transform: uppercase;
-  & > p {
+}
+
+.c-logo {
+  display: flex;
+  padding-left: 0px;
+  justify-content: space-around;
+  align-items: center;
+  height: auto;
+  width: 120px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0px;
+  text-transform: uppercase;
+
+  &__title {
     font-size: 16px;
     font-weight: 700;
     margin: 0 0;
   }  
 
-    & img {
-      width: 35px;
-      height: 30px;
-    }
+  &__image {
+    width: 36px;
+    height: 30px;
   }
+
 }
 
 .c-banner {
+  padding-top: $bs;
   background-repeat: no-repeat;
   background-position: right 0 bottom -2px;
   background-size: contain;
@@ -40,23 +44,35 @@
   min-height: 440px;
   height: 70%;
   display: block;
+  background-clip: padding-box;
 
   &--intro {
-      padding-top: 7vh; 
-      background-image: url(../img/introduction-visual.png);
-      border-bottom: 1px solid #666666;
+    background-size: 50%; 
+    height: 50%;
+    background-image: url(../img/introduction-visual.png);
+    border-bottom: 1px solid #666666;
+
+    @include screen-size(tablet) {
+      background-size: 60%;
+      height: 65%;
+    }
+
+    @include screen-size(laptop) {
+      background-size: contain;
+    }
+
   }
 
   &--about {
-      padding-top: 65px;
       background-image: url(../img/about-visual.png);
   }
 
   &--contacts {
       background-image: url(../img/contact-visual.png);
-      height: auto;
+      height: 100%;
       background-size: cover;
-      background-position: right -140px bottom 40px;
+      background-clip: content-box;
+      background-position: center;
       position: relative;
 
   }

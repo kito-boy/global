@@ -1,0 +1,15 @@
+@mixin screen-size($size) {
+  $phone-upper-limit: 600px;
+  $tablet-upper-limit: 1200px;
+  $laptop-upper-limit:  1800px;
+
+  @if $size == phone {
+    @media (max-width: $phone-upper-limit - 1) { @content; }
+  } @else if $size == tablet {
+    @media (min-width: $phone-upper-limit) { @content; }
+  } @else if $size == laptop {
+    @media (min-width: $tablet-upper-limit) { @content; }
+  } @else if $size == desktop {
+    @media (min-width: $laptop-upper-limit) { @content; }
+  }
+}

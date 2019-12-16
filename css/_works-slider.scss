@@ -1,6 +1,11 @@
+$r: 300px;
+$r-big: 400px;
+$r-small: 200px;
+$animation-curve: cubic-bezier(0.47, 0, 0.745, 0.715);
+
 .works-slider {
-  width: 100%;
-  height: 300px;
+  width: calc(100% - 110px);
+  height: auto;
   padding: 0;
   display: block; 
   list-style: none;
@@ -12,17 +17,21 @@
   top: 50%;
   left: 50%;
   opacity: 0;
-  transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
+  transition: all 500ms $animation-curve;
 
 
   &__image {
     display: block;
     border-radius: 50%;
-    width: 150px;
-    height: 150px;
+    width: $r * 0.5;
+    height: $r * 0.5;
     object-fit: cover;
-    transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
-
+    transition: all 500ms $animation-curve;
+    
+    @media (min-width: $vw-laptop) {
+      width: $r-big * 0.5;
+      height: $r-big * 0.5;
+    }
   }  
 
   &__title {
@@ -35,7 +44,7 @@
     left: 0;
     right: 0;
     bottom: -25px;
-    transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: all 500ms $animation-curve;
 
   }
 
@@ -43,7 +52,7 @@
     position: absolute;
     left: 0;
     right: 0;
-    width: 300px;
+    width: $r;
     bottom: -96px;
     color: white;
     font-size: 14px;
@@ -51,7 +60,14 @@
     line-height: 1.6em;
     opacity: 0;
     text-align: center;
-    transition: opacity 400ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: opacity 400ms $animation-curve;
+
+    @media (max-width: $vw-phone) {
+      width: $r-small;
+    }
+    @media (min-width: $vw-laptop) {
+      width: $r-big;
+    }
 
   }
 
@@ -61,25 +77,33 @@
     z-index: 666;
     opacity: 1;
     transform: translate(-50%, -50%);
-    transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: all 500ms $animation-curve;
 
     .works-slider-item {
       &__image {
-        width: 300px;
-        height: 300px;
-        transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
-
+        width: $r;
+        height: $r;
+        transition: all 500ms $animation-curve;
+        
+        @media (max-width: $vw-phone) {
+          width: $r-small;
+          height: $r-small;
+        }
+        @media (min-width: $vw-laptop) {
+          width: $r-big ;
+          height: $r-big;
+        }
       }
       &__title {
         color: white;
         font-size: 16px;
         bottom: -40px;
-        transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
+        transition: all 500ms $animation-curve;
 
       }
       &__description {
         opacity: 1;
-        transition: all 700ms cubic-bezier(0.47, 0, 0.745, 0.715);
+        transition: all 700ms $animation-curve;
       }
     }
   }
@@ -87,12 +111,20 @@
   &--left {
     opacity: 1;
     transform: translate(-235%, -50%);
-    transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: all 500ms $animation-curve;
+
+    @media (max-width: $vw-tablet) {
+     opacity: 0;
+    }
   }
 
   &--right {
     opacity: 1;
     transform: translate(135%, -50%);
-    transition: all 500ms cubic-bezier(0.47, 0, 0.745, 0.715);
+    transition: all 500ms $animation-curve;
+
+    @media (max-width: $vw-tablet) {
+      opacity: 0;
+    }
   }
 }

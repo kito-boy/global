@@ -1,14 +1,21 @@
 $main-color: rgb(15,51,254);
+$sec-color: rgb(140, 140, 140);
+$bg-color: rgb(12, 12, 12);
+$vw-laptop: 1440px;
+$vw-desktop: 1680px;
+$vw-tablet: 768px;
+$vw-phone: 420px;
+$bs: 24px;
+$ff-main: "Montserrat", sans-serif;
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,800,900&display=swap');
 @import "./global-icons";
-@import "./layout", "./components", "./works-slider";
+@import "./layout", "./components", "./works-slider", "./mq";
 
 
 
 html {
   box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
 }
 
 html > * {
@@ -20,26 +27,20 @@ html * {
 }
 
 body {
-  font-family: "Montserrat", sans-serif;
+  font-family: $ff-main;
   margin: 0;
   padding: 0;
-  background-color: #0c0c0c;
+  background-color: $bg-color;
 }
 
 p {
   margin-bottom: 1.5em;
   font-size: 14px;
-  line-height: 1.6;
   font-weight: 400;
 }
 
 a {
   text-decoration: none;
-}
-
-span {
-  margin: 0;
-  padding: 0;
 }
 
 .hdr {
@@ -50,24 +51,43 @@ span {
   color: white;
 
   &--bigger {
-    font-size: 90px;
-    line-height: 0.95em;
-    font-weight: 900;
+    font-size: 54px;
+    line-height: 58px;
+    font-weight: 800;
+    margin: $bs * 0.5 0 $bs * 2.5 0;
+    
+
+    @include screen-size(tablet) {
+      font-size: 68px;
+      line-height: 74px;
+      margin: $bs * 0.5 0 $bs * 3 0;
+    }
+
+    @include screen-size(laptop) {
+      font-size: 80px;
+      line-height: 84px;
+      font-weight: 900;
+      margin: $bs * 1.5 0 $bs * 3 0;
+    }
+
+    @include screen-size(desktop) {
+      font-size: 92px;
+      line-height: 96px;
+      margin: $bs * 2.5 0 $bs * 4.5 0;
+    }
   }
 
   &--smaller {
     margin: 2em 0 1.5em 0;
     font-size: 16px;
-    font-weight: 600;
+    
   }
 }
 
 .works-header {
-  top: 50px;
+  top: 100px;
   position: absolute;
-  left: 0;
-  right: 0;
-  margin: 0 auto;
+  width: 100%;
   text-align: center;
 }
 
@@ -159,9 +179,6 @@ span {
   }
 }
 
-
-
-
 .input-name {
   position: relative;
   border-bottom: 1px solid #fff;
@@ -170,7 +187,7 @@ span {
 
   &__field {
     width: 100%;
-    background-color: #0c0c0c;
+    background-color: $bg-color;
     border: none;
     color: white;
     outline: none;
