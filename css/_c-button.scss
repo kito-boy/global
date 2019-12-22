@@ -1,3 +1,5 @@
+@import "./mq";
+
 .c-button {
   font-family: $ff-main;
   outline: none;
@@ -21,6 +23,11 @@
     z-index: 666;
     margin: 0;
   }
+
+  &__arrow-right{
+    font-size: 15px;
+    margin-left: 0.5em;
+  }
     
   &--slider {
     border-radius: 50%;
@@ -32,11 +39,21 @@
     cursor: pointer;
     display: block;
     text-align: center;
+    margin-bottom: 118px;
+
+    @include screen-size(tablet-portrait) {
+      margin-bottom: 74px;
+    }
   }
 
   &--intro {
-    margin-left: 10px;
+    margin: 12% 0 0 10px;
     font-size: 14px;
+    
+    @include screen-size(tablet-landscape) {
+      margin: 5% 0 0 10px;
+    }
+
     &::after {
       content: '';
       width: 80px;
@@ -100,13 +117,6 @@
     &:hover {
       width: 400px;
     }
-  }
-
-
-
-  &__arrow-right{
-    font-size: 15px;
-    margin-left: 0.5em;
   }
 
   &--checkbox {

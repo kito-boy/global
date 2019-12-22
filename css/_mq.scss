@@ -1,15 +1,18 @@
 @mixin screen-size($size) {
   $phone-upper-limit: 600px;
-  $tablet-upper-limit: 1200px;
+  $tablet-portrait-upper-limit: 1024px;
+  $tablet-landscape-upper-limit: 1366px;
   $laptop-upper-limit:  1800px;
 
   @if $size == phone {
-    @media (max-width: $phone-upper-limit - 1) { @content; }
-  } @else if $size == tablet {
-    @media (min-width: $phone-upper-limit) { @content; }
+    @media screen and (max-width: $phone-upper-limit - 1) { @content; }
+  } @else if $size == tablet-portrait {
+    @media screen and (min-width: $phone-upper-limit) { @content; }
+  } @else if $size == tablet-landscape {
+    @media screen and (min-width: $tablet-portrait-upper-limit ) { @content; }
   } @else if $size == laptop {
-    @media (min-width: $tablet-upper-limit) { @content; }
+    @media screen and (min-width: $tablet-landscape-upper-limit) { @content; }
   } @else if $size == desktop {
-    @media (min-width: $laptop-upper-limit) { @content; }
+    @media screen and (min-width: $laptop-upper-limit) { @content; }
   }
 }

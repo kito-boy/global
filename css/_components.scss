@@ -5,8 +5,6 @@
   max-width: 1670px;
   width: 100%;
   height: 70px;
-  // border: 1px solid green;
-
 }
 
 .c-logo {
@@ -32,7 +30,6 @@
     width: 36px;
     height: 30px;
   }
-
 }
 
 .c-banner {
@@ -52,19 +49,30 @@
     background-image: url(../img/introduction-visual.png);
     border-bottom: 1px solid #666666;
 
-    @include screen-size(tablet) {
-      background-size: 60%;
-      height: 65%;
+    @include screen-size(tablet-portrait) {
+      padding-top: 10%;
+      background-size: 70%;
+      height: 70%;
+    }
+
+    @include screen-size(tablet-landscape) {
+      padding-top: $bs;
+      background-size: 70%;
+      height: 70%;
     }
 
     @include screen-size(laptop) {
       background-size: contain;
     }
-
   }
 
   &--about {
-      background-image: url(../img/about-visual.png);
+    background-image: url(../img/about-visual.png);
+    height: 50%;
+
+    @include screen-size(tablet-landscape) {
+      height: 70%;
+    }
   }
 
   &--contacts {
@@ -74,9 +82,68 @@
       background-clip: content-box;
       background-position: center;
       position: relative;
+  }
+}
 
+.c-form-hire {
+  width: 500px;
+  height: auto;
+  margin-top: 120px;
+  display: flex;
+  flex-wrap: wrap;
+
+  @include screen-size(tablet-landscape) {
+    width: 700px;
   }
 
+  & input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+
+    &:checked ~ .c-button--checkbox {
+      border: 2px solid $main-color;
+      background-color: $main-color;
+
+      & .icon-ok {
+        visibility: visible;
+        font-size: 16px;
+      }
+    }  
+  }
+
+  & .group-1 {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: auto;
+    justify-content: space-between;
+  }
+
+  & .group-2 {
+    display: flex;
+    flex-wrap: wrap;
+    width: calc(100% - 200px);
+    height: auto;
+    justify-content: space-around;
+    margin: 0 auto;
+  }
+
+  & .text-input-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  & .submit-wrapper {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 75px;
+  }
 }
   
  

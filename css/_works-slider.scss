@@ -1,10 +1,12 @@
+@import "./mq";
+
 $r: 300px;
 $r-big: 400px;
 $r-small: 200px;
 $animation-curve: cubic-bezier(0.47, 0, 0.745, 0.715);
 
 .works-slider {
-  width: calc(100% - 110px);
+  width: calc(100% - 100px);
   height: auto;
   padding: 0;
   display: block; 
@@ -14,11 +16,10 @@ $animation-curve: cubic-bezier(0.47, 0, 0.745, 0.715);
 
 .works-slider-item {
   position: absolute;
-  top: 50%;
+  top: 80%;
   left: 50%;
   opacity: 0;
   transition: all 500ms $animation-curve;
-
 
   &__image {
     display: block;
@@ -27,8 +28,8 @@ $animation-curve: cubic-bezier(0.47, 0, 0.745, 0.715);
     height: $r * 0.5;
     object-fit: cover;
     transition: all 500ms $animation-curve;
-    
-    @media (min-width: $vw-laptop) {
+
+    @include screen-size(desktop) {
       width: $r-big * 0.5;
       height: $r-big * 0.5;
     }
@@ -43,88 +44,97 @@ $animation-curve: cubic-bezier(0.47, 0, 0.745, 0.715);
     color: #858585;
     left: 0;
     right: 0;
-    bottom: -25px;
+    margin: 0 auto;
+    bottom: -2em;
     transition: all 500ms $animation-curve;
 
+    @include screen-size(desktop) {
+      font-size: 14px;
+    }
   }
 
   &__description {
     position: absolute;
-    left: 0;
-    right: 0;
-    width: $r;
-    bottom: -96px;
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    bottom: -8em;
+    width: $r-small;
     color: white;
     font-size: 14px;
     font-weight: 500;
-    line-height: 1.6em;
+    line-height: 1.35em;
     opacity: 0;
     text-align: center;
     transition: opacity 400ms $animation-curve;
 
-    @media (max-width: $vw-phone) {
-      width: $r-small;
+    @include screen-size(desktop) {
+      font-size: 16px;
     }
-    @media (min-width: $vw-laptop) {
-      width: $r-big;
-    }
-
   }
 
-  &--center{
+  &--center {
     position: absolute;
-
     z-index: 666;
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -80%);
     transition: all 500ms $animation-curve;
 
+    @include screen-size(tablet-portrait) {
+      transform: translate(-50%, -65%);
+    }
+    
     .works-slider-item {
       &__image {
-        width: $r;
-        height: $r;
+        width: $r-small;
+        height: $r-small;
         transition: all 500ms $animation-curve;
-        
-        @media (max-width: $vw-phone) {
-          width: $r-small;
-          height: $r-small;
+
+        @include screen-size(tablet-portrait) {
+          width: $r;
+          height: $r;
         }
-        @media (min-width: $vw-laptop) {
+        @include screen-size(desktop) {
           width: $r-big ;
           height: $r-big;
         }
       }
+
       &__title {
         color: white;
         font-size: 16px;
-        bottom: -40px;
+        bottom: -2.75em;
         transition: all 500ms $animation-curve;
 
+        @include screen-size(desktop) {
+          font-size: 18px;
+        }
       }
+
       &__description {
         opacity: 1;
         transition: all 700ms $animation-curve;
       }
     }
   }
- //opacity 0 if screen is small
+  
   &--left {
-    opacity: 1;
-    transform: translate(-235%, -50%);
+    opacity: 0;
+    transform: translate(-240%, -70%);
     transition: all 500ms $animation-curve;
 
-    @media (max-width: $vw-tablet) {
-     opacity: 0;
+    @include screen-size(tablet-landscape) {
+      opacity: 1;
     }
   }
 
   &--right {
-    opacity: 1;
-    transform: translate(135%, -50%);
+    opacity: 0;
+    transform: translate(140%, -70%);
     transition: all 500ms $animation-curve;
 
-    @media (max-width: $vw-tablet) {
-      opacity: 0;
+    @include screen-size(tablet-landscape) {
+      opacity: 1;
     }
   }
 }

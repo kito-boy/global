@@ -1,18 +1,12 @@
 $main-color: rgb(15,51,254);
 $sec-color: rgb(140, 140, 140);
 $bg-color: rgb(12, 12, 12);
-$vw-laptop: 1440px;
-$vw-desktop: 1680px;
-$vw-tablet: 768px;
-$vw-phone: 420px;
 $bs: 24px;
 $ff-main: "Montserrat", sans-serif;
 
 @import url('https://fonts.googleapis.com/css?family=Montserrat:300,400,600,700,800,900&display=swap');
 @import "./global-icons";
 @import "./layout", "./components", "./works-slider", "./mq";
-
-
 
 html {
   box-sizing: border-box;
@@ -27,16 +21,21 @@ html * {
 }
 
 body {
+  background-color: rgb(12, 12, 12);
   font-family: $ff-main;
   margin: 0;
   padding: 0;
-  background-color: $bg-color;
 }
 
 p {
   margin-bottom: 1.5em;
   font-size: 14px;
   font-weight: 400;
+}
+
+h1, h2, h3 {
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 a {
@@ -51,41 +50,45 @@ a {
   color: white;
 
   &--bigger {
-    font-size: 54px;
-    line-height: 58px;
-    font-weight: 800;
-    margin: $bs * 0.5 0 $bs * 2.5 0;
+    font-size: 48px;
+    line-height: 52px;
+    font-weight: 700;
     
+    @include screen-size(tablet-portrait) {
+      font-size: 72px;
+      line-height: 78px;
+    }
 
-    @include screen-size(tablet) {
+    @include screen-size(tablet-landscape) {
       font-size: 68px;
       line-height: 74px;
-      margin: $bs * 0.5 0 $bs * 3 0;
+      font-weight: 800;
     }
 
     @include screen-size(laptop) {
       font-size: 80px;
       line-height: 84px;
       font-weight: 900;
-      margin: $bs * 1.5 0 $bs * 3 0;
     }
 
     @include screen-size(desktop) {
       font-size: 92px;
       line-height: 96px;
-      margin: $bs * 2.5 0 $bs * 4.5 0;
     }
   }
 
   &--smaller {
-    margin: 2em 0 1.5em 0;
-    font-size: 16px;
-    
+    font-size: 16px;  
+
+    @include screen-size(laptop) {
+      font-size: 18px;
+      font-weight: 700;
+    }
   }
 }
 
 .works-header {
-  top: 100px;
+  top: 7%;
   position: absolute;
   width: 100%;
   text-align: center;
@@ -101,81 +104,32 @@ a {
   position: relative;
   &__1 {
     &::before {
-      background-color: $main-color;
       content: '';
-      width: 22px;
-      height: 22px;
+      background-color: $main-color;
       position: absolute;
-      top: 6px;
       border-radius: 50%;
+      width: 0.28em;
+      height: 0.28em;
+      top: 0.09em;
+      left: 0.01em;
+
+      @include screen-size(tablet-landscape) {
+        width: 0.3em;
+        height: 0.3em;
+      }
     }
   }
 
   &__2 {
     &::before {
-      background-color: $main-color;
       content: '';
-      width: 10px;
-      height: 10px;
       position: absolute;
-      bottom: 16px;
-      right: -20px;
-    }
-  }
-
-}
-
-.c-form-hire {
-  width: 100%;
-  height: auto;
-  margin-top: 120px;
-
-  & input[type="checkbox"] {
-    position: absolute;
-    opacity: 0;
-    cursor: pointer;
-    height: 0;
-    width: 0;
-
-    &:checked ~ .c-button--checkbox {
-      border: 2px solid $main-color;
       background-color: $main-color;
-
-      & .icon-ok {
-        visibility: visible;
-        font-size: 16px;
-      }
-    }  
-  }
-
-  & .group-1 {
-    display: flex;
-    width: 100%;
-    height: auto;
-    justify-content: space-between;
-  }
-
-  & .group-2 {
-    display: flex;
-    flex-wrap: wrap;
-    width: calc(100% - 200px);
-    height: auto;
-    justify-content: space-around;
-    margin: 0 auto;
-  }
-
-  & .text-input-wrapper {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  & .submit-wrapper {
-    width: 100%;
-    height: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 75px;
+      width: 0.18em;
+      height: 0.18em;
+      bottom: 0.22em;
+      right: -0.3em;
+    }
   }
 }
 

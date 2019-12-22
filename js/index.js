@@ -12,6 +12,19 @@ function previousItem(item) {
   return item.previousElementSibling;
 }
 
+function throttle (callback, limit) {
+  var wait = false;
+  return function() {
+    if (!wait) {
+      callback.apply(null, arguments);
+      wait = true;
+      setTimeout(function() {
+        wait = false;
+      }, limit);
+    }
+  }
+}
+
 class Render {
   rootNodeClass;
   currentItem;
@@ -86,8 +99,47 @@ class Slider {
               this.renderer.showNext();
             }
           })
+          break;
+        case 'scroll':
+          document.addEventListener('wheel', throttle(this.scrollHandler, 700));
+          break;
+        case 'touch':
+          this.touchHandler();
       }
     })
+  }
+
+  touchHandler() {
+    let ts = null;
+    let te = null;  
+
+    document.querySelector('body').addEventListener('touchstart', (e) => {
+      ts = e.touches[0].clientY;
+      console.log(ts);
+    });
+
+    document.querySelector('body').addEventListener('touchend', (e) => {
+      te = e.changedTouches[0].clientY;
+      console.log(te);
+
+      let delta = te - ts;
+      if ( (delta < 0) && (Math.abs(delta) > 100) ) {
+        this.renderer.showNext(); 
+      } else if ( (delta > 0) && (Math.abs(delta) > 100) ) {
+        this.renderer.showPrevious();
+      };
+
+    });
+
+
+  }
+  scrollHandler = (e) => {
+    const delta = Math.sign(e.deltaY);
+    if (delta > 0) {
+      this.renderer.showNext() 
+    } else if (delta < 0) {
+      this.renderer.showPrevious()
+    }
   }
 
   render() {
@@ -104,7 +156,7 @@ function makeSlider(rootNodeClass, renderType, ...controlTypes) {
 }
 
 makeSlider('works-slider', 'carousel', 'buttons');
-makeSlider('l-section', 'fullscreen-vertical', 'arrowkeys-vertical');
+makeSlider('l-section', 'fullscreen-vertical', 'arrowkeys-vertical', 'scroll', 'touch');
 
 
 
