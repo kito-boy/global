@@ -115,14 +115,12 @@ class Slider {
 
     document.querySelector('body').addEventListener('touchstart', (e) => {
       ts = e.touches[0].clientY;
-      console.log(ts);
     });
 
     document.querySelector('body').addEventListener('touchend', (e) => {
       te = e.changedTouches[0].clientY;
-      console.log(te);
-
       let delta = te - ts;
+
       if ( (delta < 0) && (Math.abs(delta) > 100) ) {
         this.renderer.showNext(); 
       } else if ( (delta > 0) && (Math.abs(delta) > 100) ) {
@@ -130,9 +128,8 @@ class Slider {
       };
 
     });
-
-
   }
+
   scrollHandler = (e) => {
     const delta = Math.sign(e.deltaY);
     if (delta > 0) {
