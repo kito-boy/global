@@ -18,7 +18,7 @@
       }
   
       &:hover {
-        color: rgba($sec-color, 0.5);  
+        color: rgba($sec-color, 0.4);  
       }
     }
   
@@ -107,7 +107,7 @@
 
     &:hover {  
       color: rgba(255, 255, 255, 0.9);
-      transition: 0.3s cubic-bezier(0.075, 0.82, 0.165, 1);
+      transition: 0.2s ease-in;
 
 
       &::before {

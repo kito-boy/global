@@ -13,27 +13,21 @@ function previousItem(item) {
 }
 
 function throttle (callback, limit) {
-  var wait = false;
+  let wait = false;
   return function() {
     if (!wait) {
       callback.apply(null, arguments);
       wait = true;
-      setTimeout(function() {
-        wait = false;
-      }, limit);
+      setTimeout( () => wait = false, limit);
     }
   }
 }
 
 class Render {
-  rootNodeClass;
-  currentItem;
-  type;
-
-  constructor(rootNodeClass, type) {
-    this.rootNodeClass = rootNodeClass;
-    this.type = type;
-    this.currentItem = document.querySelector('.' + this.rootNodeClass).firstElementChild;
+  constructor(rootNodeClass, sliderType) {
+    this.root = rootNodeClass;
+    this.type = sliderType;
+    this.currentItem = document.querySelector('.' + this.root).firstElementChild;
   }
 
   render() {
@@ -41,28 +35,28 @@ class Render {
       case 'carousel':
         this.renderCarousel();
         break;
+
       case 'fullscreen-vertical':
         this.renderFsVertical();
-        break;
     }
   }
 
   renderCarousel() {
-    for (let el of document.querySelector('.' + this.rootNodeClass).children) {
-      el.classList.remove(this.rootNodeClass + '-item--center',
-                          this.rootNodeClass + '-item--left',
-                          this.rootNodeClass + '-item--right')
+    for (let el of document.querySelector('.' + this.root).children) {
+      el.classList.remove(this.root + '-item--center',
+                          this.root + '-item--left',
+                          this.root + '-item--right')
     };
 
-    this.currentItem.classList.add(this.rootNodeClass + '-item--center');
-    previousItem(this.currentItem).classList.add(this.rootNodeClass + '-item--left');
-    nextItem(this.currentItem).classList.add(this.rootNodeClass + '-item--right');
+    this.currentItem.classList.add(this.root + '-item--center');
+    previousItem(this.currentItem).classList.add(this.root + '-item--left');
+    nextItem(this.currentItem).classList.add(this.root + '-item--right');
   }
 
   renderFsVertical() {
-    previousItem(this.currentItem).classList.remove(this.rootNodeClass + '-item--is-active');
-    nextItem(this.currentItem).classList.remove(this.rootNodeClass + '-item--is-active');
-    this.currentItem.classList.add(this.rootNodeClass + '-item--is-active');
+    previousItem(this.currentItem).classList.remove(this.root + '-item--is-active');
+    nextItem(this.currentItem).classList.remove(this.root + '-item--is-active');
+    this.currentItem.classList.add(this.root + '-item--is-active');
   }
 
   showNext() {
@@ -77,8 +71,6 @@ class Render {
 }
 
 class Slider {
-  renderer;
-
   constructor(renderer) {
     this.renderer = renderer;
   }
@@ -88,9 +80,9 @@ class Slider {
       console.log(type);
       switch (type) {
         case 'buttons':
-          document.querySelector('.' + this.renderer.rootNodeClass + '__prevButton').addEventListener('click', () => this.renderer.showPrevious(), false);
-          document.querySelector('.' + this.renderer.rootNodeClass + '__nextButton').addEventListener('click', () => this.renderer.showNext(), false);
+          this.buttonsHandler();
           break;
+
         case 'arrowkeys-vertical':
           document.addEventListener('keyup', (e) => {
             if (e.code === "ArrowUp") {
@@ -100,42 +92,60 @@ class Slider {
             }
           })
           break;
+
         case 'scroll':
           document.addEventListener('wheel', throttle(this.scrollHandler, 700));
           break;
+
         case 'touch':
           this.touchHandler();
       }
     })
   }
 
+  buttonsHandler() {
+    const pb = document.querySelector('.' + this.renderer.root + '__prevButton');
+    const nb = document.querySelector('.' + this.renderer.root + '__nextButton');
+    pb.addEventListener('click', () => this.renderer.showPrevious(), false);
+    nb.addEventListener('click', () => this.renderer.showNext(), false);
+  }
+
   touchHandler() {
     let ts = null;
     let te = null;  
+    const el = document.querySelector('body');
 
-    document.querySelector('body').addEventListener('touchstart', (e) => {
+    el.addEventListener('touchstart', (e) => {
       ts = e.touches[0].clientY;
     });
 
-    document.querySelector('body').addEventListener('touchend', (e) => {
+    el.addEventListener('touchend', (e) => {
       te = e.changedTouches[0].clientY;
       let delta = te - ts;
-
       if ( (delta < 0) && (Math.abs(delta) > 100) ) {
         this.renderer.showNext(); 
       } else if ( (delta > 0) && (Math.abs(delta) > 100) ) {
         this.renderer.showPrevious();
-      };
-
+      }
     });
   }
 
   scrollHandler = (e) => {
     const delta = Math.sign(e.deltaY);
+
+    console.log(e.deltaY);
+
     if (delta > 0) {
-      this.renderer.showNext() 
+      let pi = this.renderer.currentItem;
+      pi.style.top = '-30px';
+      this.renderer.showNext();
+      setTimeout(() => { pi.style.top = '70px'}, 400);
+      
     } else if (delta < 0) {
-      this.renderer.showPrevious()
+      let pi = this.renderer.currentItem;
+      pi.style.top = '170px';
+      this.renderer.showPrevious();
+      setTimeout(() => { pi.style.top = '70px'}, 400);
     }
   }
 
@@ -144,9 +154,9 @@ class Slider {
   }
 }
 
-function makeSlider(rootNodeClass, renderType, ...controlTypes) {
+function makeSlider(root, renderType, ...controlTypes) {
   let types = controlTypes;
-  const newSliderRenderer = new Render(rootNodeClass, renderType);
+  const newSliderRenderer = new Render(root, renderType);
   const newSlider = new Slider(newSliderRenderer);
   newSlider.render();
   newSlider.setControls(types);
@@ -154,6 +164,7 @@ function makeSlider(rootNodeClass, renderType, ...controlTypes) {
 
 makeSlider('works-slider', 'carousel', 'buttons');
 makeSlider('l-section', 'fullscreen-vertical', 'arrowkeys-vertical', 'scroll', 'touch');
+
 
 
 
