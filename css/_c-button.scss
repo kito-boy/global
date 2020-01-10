@@ -104,15 +104,21 @@
     padding: 0;
     color: white;
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.05em;
     border: none;
-    height: 50px;
-    width: 300px;
+    height: 45px;
+    width: 170px;
     position: absolute;
     margin: 0 auto;
     transition: 0.25s cubic-bezier(0.445, 0.05, 0.55, 0.95); 
+
+    @include screen-size(tablet-portrait) {
+      height: 50px;
+      width: 300px;
+      font-size: 14px;
+    }
 
     &:hover {
       width: 400px;
@@ -120,8 +126,8 @@
   }
 
   &--checkbox {
-    width: 200px;
-    height: 50px;
+    width: 175px;
+    height: 45px;
     border: 2px solid white;
     color:white;
     position: relative;
@@ -131,13 +137,19 @@
     justify-content: center;
     cursor: pointer;
     font-weight: 600;
-    font-size: 16px;
+    font-size: 15px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
     transition: 0.3s ease-in;
     margin-bottom: 40px;
+
+    @include screen-size(tablet-landscape) {
+      width: 200px;
+      height: 50px;
+      font-size: 16px;
+    }
   
     & .icon-ok {
       font-size: 0;

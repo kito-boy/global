@@ -121,27 +121,41 @@
   }
 
   &--about {
-    width: 20%;
-    height: 50%;
+    width: 40%;
+    height: 20%;
     margin-right: 50px;
+
+    @include screen-size(tablet-landscape) {
+      width: 20%;
+      height: 50%;
+      margin-right: 50px;
+    }
 
     .c-link__image {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border: 10px solid $main-color;
+      border: 4px solid $main-color;
+
+      @include screen-size(tablet-landscape) {
+        border: 10px solid $main-color;
+      }
     }
     
     .c-link__title {
       font-size: 14px;
       font-weight: 600;
       position: absolute;
-      bottom: -10px;
+      bottom: -14px;
       left: 15px;
       color: white;
       text-transform: uppercase;
       z-index: 666;
       transition: 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      @include screen-size(tablet-landscape) {
+        bottom: -10px;
+      }
     }
 
     &:hover {

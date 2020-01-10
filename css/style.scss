@@ -45,9 +45,13 @@ a {
 .hdr {
   margin-bottom: 32px;
   margin-top: 0;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: 600;
   color: white;
+
+  @include screen-size(tablet-landscape) {
+    font-size: 30px;
+  }
 
   &--bigger {
     font-size: 48px;
@@ -88,10 +92,14 @@ a {
 }
 
 .works-header {
-  top: 7%;
+  top: 5%;
   position: absolute;
   width: 100%;
   text-align: center;
+
+  @include screen-size(tablet-landscape) {
+   top: 7%;
+  }
 }
 
 .figure-drawer-wrapper {
@@ -136,8 +144,14 @@ a {
 .input-name {
   position: relative;
   border-bottom: 1px solid #fff;
-  width: 325px;
+  width: 375px;
   height: 50px;
+  margin-bottom: 14px;
+
+  @include screen-size(tablet-landscape) {
+    margin-bottom: 0;
+    width: 325px;
+  }
 
   &__field {
     width: 100%;
@@ -147,20 +161,34 @@ a {
     outline: none;
     font-family: "Montserrat", sans-serif;
     font-weight: 300; 
-    font-size: 24px;
+    font-size: 18px;
     position: absolute;
     bottom: 5px;
 
+    @include screen-size(tablet-landscape) {
+      font-size: 24px;
+    }
+
     &:focus ~ .input-name__label {
-      font-size: 14px;
-      bottom: 44px;
-      color: rgba($color: #fff, $alpha: 0.6)
+      font-size: 12px;
+      bottom: 34px;
+      color: rgba($color: #fff, $alpha: 0.6);
+
+      @include screen-size(tablet-landscape) {
+        bottom: 44px;
+        font-size: 14px;
+      }
     }
 
     &:not(:placeholder-shown) ~ .input-name__label {
-      font-size: 14px;
-      bottom: 44px;
-      color: rgba($color: #fff, $alpha: 0.6)
+      font-size: 12px;
+      bottom: 34px;
+      color: rgba($color: #fff, $alpha: 0.6);
+
+      @include screen-size(tablet-landscape) {
+        bottom: 44px;
+        font-size: 14px;
+      }
     }
   }
 
@@ -170,7 +198,11 @@ a {
     bottom: 3px;
     left: -1px;
     font-weight: 300; 
-    font-size: 24px;
+    font-size: 18px;
     transition: all 0.2s ease-in;
+
+    @include screen-size(tablet-landscape) {
+      font-size: 24px;
+    }
   }
 }
